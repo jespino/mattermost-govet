@@ -4,7 +4,6 @@
 package filesize
 
 import (
-	"go/ast"
 	"strings"
 
 	"github.com/mattermost/mattermost-govet/helpers"
