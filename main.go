@@ -6,6 +6,7 @@ import (
 	"github.com/mattermost/mattermost-govet/emptyInterface"
 	"github.com/mattermost/mattermost-govet/emptyStrCmp"
 	"github.com/mattermost/mattermost-govet/equalLenAsserts"
+	"github.com/mattermost/mattermost-govet/filesize"
 	"github.com/mattermost/mattermost-govet/errorAssertions"
 	"github.com/mattermost/mattermost-govet/errorVars"
 	"github.com/mattermost/mattermost-govet/errorVarsName"
@@ -42,5 +43,6 @@ func main() {
 		pointerToSlice.Analyzer,
 		mutexLock.Analyzer,
 		emptyInterface.Analyzer,
+		filesize.Analyzer,
 	)
 }
