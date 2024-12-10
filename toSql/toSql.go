@@ -17,12 +17,15 @@ var Analyzer = &analysis.Analyzer{
 
 func run(pass *analysis.Pass) (interface{}, error) {
 	for _, file := range pass.Files {
+		var currentFunction string
 		ast.Inspect(file, func(node ast.Node) bool {
 			switch x := node.(type) {
+			case *ast.FuncDecl:
+				currentFunction = x.Name.Name
 			case *ast.CallExpr:
 				if fun, ok := x.Fun.(*ast.SelectorExpr); ok {
 					if fun.Sel.Name == "ToSql" {
-						pass.Reportf(node.Pos(), "Function uses ToSql method which is deprecated and should be migrated")
+						pass.Reportf(node.Pos(), "Function %q uses ToSql method which is deprecated and should be migrated", currentFunction)
 					}
 				}
 			}
